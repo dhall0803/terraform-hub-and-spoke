@@ -48,4 +48,44 @@ resource "azurerm_firewall_network_rule_collection" "example" {
       "Any"
     ]
   }
+
+  rule {
+    name = "AllowVirtualNetworkToOnPrem"
+
+    source_addresses = [
+      "10.20.0.0/16"
+    ]
+
+    destination_ports = [
+      "*"
+    ]
+
+    destination_addresses = [
+      "172.16.0.0/16"
+    ]
+
+    protocols = [
+      "Any"
+    ]
+  }
+
+  rule {
+    name = "AllowOnPremToVirtualNetwork"
+
+    source_addresses = [
+      "172.16.0.0/16"
+    ]
+
+    destination_ports = [
+      "*"
+    ]
+
+    destination_addresses = [
+      "10.20.0.0/16"
+    ]
+
+    protocols = [
+      "Any"
+    ]
+  }
 }
